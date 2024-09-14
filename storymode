@@ -1,0 +1,129 @@
+# Interactive Stories Framework
+
+class StoryNode:
+    def __init__(self, description, choices=None):
+        self.description = description  # Description of the story node
+        self.choices = choices or []  # List of choices for the player to make
+    
+    def display(self):
+        # Display the current story description
+        print(self.description)
+        if self.choices:
+            for index, (choice_text, _) in enumerate(self.choices, start=1):
+                print(f"{index}. {choice_text}")
+        else:
+            print("The End.")
+    
+    def get_choice(self):
+        # Get the player's choice
+        if not self.choices:
+            return None
+        while True:
+            try:
+                choice = int(input("\nEnter the number of your choice: "))
+                if 1 <= choice <= len(self.choices):
+                    return self.choices[choice - 1][1]
+                else:
+                    print("Invalid choice. Try again.")
+            except ValueError:
+                print("Please enter a number.")
+
+
+class Story:
+    def __init__(self, start_node):
+        self.current_node = start_node  # Start node of the story
+    
+    def play(self):
+        # Main game loop
+        while self.current_node:
+            self.current_node.display()  # Display the current node
+            next_node = self.current_node.get_choice()  # Get the next node
+            if next_node:
+                self.current_node = next_node
+            else:
+                print("\nThanks for playing!")
+                break
+
+
+# Story Nodes
+start = StoryNode(
+    "You find yourself in a dark forest. Two paths lie ahead of you.",
+    [("Take the left path", None), ("Take the right path", None)]
+)
+
+# Continuing the left path
+left_path = StoryNode(
+    "The left path leads you to a quiet clearing. There's a cabin nearby.",
+    [("Enter the cabin", None), ("Stay in the clearing0", None)]
+)
+
+# Continuing the right path
+right_path = StoryNode(
+    "The right path leads you to a rushing river. There's a bridge ahead.",
+    # [("Cross the bridge", None), ("Turn back", None)]
+)
+
+# Connecting the story
+start.choices[0] = ("Take the left path", left_path)
+start.choices[1] = ("Take the right path", right_path)
+
+left_path.choices[0] = ("Enter the cabin", None)  # Add more nodes here for more branching
+left_path.choices[1] = ("Stay in the clearing", None)
+
+right_path.choices[0] = ("Cross the bridge", None)
+right_path.choices[1] = ("Turn back", None)
+
+# Create and play the story
+story = Story(start)
+story.play()1
+
+
+
+
+def get_choice(self):
+    # Get the player's choice
+    if not self.choices:
+        return None
+    while True:
+        try:
+            choice = int(input("\nEnter the number of your choice: ")) 
+            if 1 <= choice <= len(self.choices):
+                return self.choices[choice - 1][1]
+            else:
+                print("Invalid choice. Try again.")
+        except valueError:
+            print("Please enter a number.")
+            
+            
+  class Story:
+      def __init__(self, start_node):
+          self.current_node = start_node  # Start node of the story
+          
+      def play(self):
+          #Main game loop
+          while self.current_node:
+              self.current_node.display()  #Display the current node  
+              next_node = self.current_node.get_choice() # Get the next node
+              if next_node:
+                  self.current_node = next_node
+              else:
+                  print("\nThanks for playing!")
+                  break
+              
+              
+ # Story Nodes
+ start = StoryNode(
+     "You find yourself in a dark forest. Two paths lie ahead of you.",
+    [("Take the left path", None), ("Take the right path", NONE)])
+                       
+                       
+ # Continuing the left path
+ left_path = StoryNode(
+     "The left path leads you to a quiet clearing. There's a acabin 
+     [("Enter the cabin", None), ("Stay in the clearing0", None)]"
+ )                      
+ 
+ # Continuing the right path
+ right_path = StoryNode(
+     "The right path leads you to a rushing river. There's a bridge ahead.",
+ )
